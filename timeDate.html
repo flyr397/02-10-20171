@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <p>Clicking the buttons will display day and time</p>
+
+    <button onclick="myDate()">DATE</button>
+    <p id="demo"></p>
+    <button onclick="startTime()">TIME</button>
+    <p id='txt'></p>
+
+    <script>
+        function myDate() {
+            var text = "";
+            var d = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            var n = weekday[d.getDay()];
+            text += "<b>Today is:</b> " + n + "<br>";
+
+            document.getElementById("demo").innerHTML = text;
+        }
+        function startTime() {
+            var text = "";
+            var today = new Date();
+            var h = today.getHours();
+            var ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12;
+            h = h ? h : 12;
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =
+           text += "<b>Current time is: </b>" + h + ampm + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };
+            return i;
+        }
+        function displayTime() {
+        }
+    </script>
+</body>
+</html>
